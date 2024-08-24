@@ -520,6 +520,6 @@
     <string name="probe_cert_summary">探测服务器的 TLS 证书。</string>
     <string name="probe_cert_target_server">目标服务器</string>
     <string name="probe_cert_success">探测成功！证书已复制到剪贴板。</string>
-
+    <string name="meyka_url_prefix">HTTP URL 前缀</string>
 
 </resources>

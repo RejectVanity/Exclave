@@ -80,6 +80,7 @@ import io.nekohasekai.sagernet.fmt.v2ray.V2RayConfig.OutboundObject
 import io.nekohasekai.sagernet.fmt.v2ray.V2RayConfig.PolicyObject
 import io.nekohasekai.sagernet.fmt.v2ray.V2RayConfig.QuicObject
 import io.nekohasekai.sagernet.fmt.v2ray.V2RayConfig.RealityObject
+import io.nekohasekai.sagernet.fmt.v2ray.V2RayConfig.RequestObject
 import io.nekohasekai.sagernet.fmt.v2ray.V2RayConfig.ReverseObject
 import io.nekohasekai.sagernet.fmt.v2ray.V2RayConfig.RoutingObject
 import io.nekohasekai.sagernet.fmt.v2ray.V2RayConfig.RoutingObject.BalancerObject.StrategyObject
@@ -845,6 +846,47 @@ fun buildV2RayConfig(
                                                     obfs = Hysteria2Object.OBFSObject().apply {
                                                         type = "salamander"
                                                         password = bean.hy2ObfsPassword
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        "meyka" -> {
+                                            network = "request"
+                                            requestSettings = RequestObject().apply {
+                                                assembler = RequestObject.AssemblerObject().apply {
+                                                    type = "packetconn.client"
+                                                    packetconnClientSettings = RequestObject.AssemblerObject.PacketConnClientObject().apply {
+                                                        underlyingNetwork = "kcp"
+                                                        kcpSettings = KcpObject().apply {
+                                                            mtu = 1350
+                                                            tti = 50
+                                                            uplinkCapacity = 12
+                                                            downlinkCapacity = 100
+                                                            congestion = false
+                                                            readBufferSize = 1
+                                                            writeBufferSize = 1
+                                                            header = KcpObject.HeaderObject().apply {
+                                                                type = bean.meykaKcpHeaderType
+                                                            }
+                                                            if (bean.mKcpSeed.isNotBlank()) {
+                                                                seed = bean.meykaKcpSeed
+                                                            }
+                                                        }
+                                                        // magic values from https://github.com/v2fly/v2ray-core/pull/3120
+                                                        maxWriteDelay = 80
+                                                        maxRequestSize = 96000
+                                                        pollingIntervalInitial = 200
+                                                    }
+                                                }
+                                                roundTripper = RequestObject.RoundTripperObject().apply {
+                                                    type = "httprt.client"
+                                                    httprtClientSettings = RequestObject.RoundTripperObject.HttprtClientObject().apply {
+                                                        http = RequestObject.RoundTripperObject.HttprtHTTPObject().apply {
+                                                            path = bean.meykaPath
+                                                            urlPrefix = bean.meykaUrlPrefix
+                                                        }
+                                                        allowHTTP = true
+                                                        h2PoolSize = 8
                                                     }
                                                 }
                                             }

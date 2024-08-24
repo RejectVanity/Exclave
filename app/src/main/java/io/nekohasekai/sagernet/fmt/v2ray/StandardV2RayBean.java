@@ -67,6 +67,11 @@ public abstract class StandardV2RayBean extends AbstractBean {
     public String hy2Password;
     public String hy2ObfsPassword;
 
+    public String meykaKcpSeed;
+    public String meykaKcpHeaderType;
+    public String meykaPath;
+    public String meykaUrlPrefix;
+
     public Boolean mux;
     public Integer muxConcurrency;
     public String muxPacketEncoding;
@@ -112,6 +117,11 @@ public abstract class StandardV2RayBean extends AbstractBean {
         if (StrUtil.isBlank(hy2Password)) hy2Password = "";
         if (StrUtil.isBlank(hy2ObfsPassword)) hy2ObfsPassword = "";
 
+        if (StrUtil.isBlank(meykaKcpSeed)) meykaKcpSeed = "";
+        if (StrUtil.isBlank(meykaKcpHeaderType)) meykaKcpHeaderType = "none";
+        if (StrUtil.isBlank(meykaPath)) meykaPath = "";
+        if (StrUtil.isBlank(meykaUrlPrefix)) meykaUrlPrefix = "";
+
         if (mux == null) mux = false;
         if (muxConcurrency == null) muxConcurrency = 8;
         if (StrUtil.isBlank(muxPacketEncoding)) muxPacketEncoding = "none";
@@ -120,7 +130,7 @@ public abstract class StandardV2RayBean extends AbstractBean {
 
     @Override
     public void serialize(ByteBufferOutput output) {
-        output.writeInt(19);
+        output.writeInt(20);
         super.serialize(output);
 
         output.writeString(uuid);
@@ -171,6 +181,13 @@ public abstract class StandardV2RayBean extends AbstractBean {
                 output.writeInt(hy2UpMbps);
                 output.writeString(hy2ObfsPassword);
                 output.writeString(hy2Password);
+                break;
+            }
+            case "meyka": {
+                output.writeString(meykaKcpHeaderType);
+                output.writeString(meykaKcpSeed);
+                output.writeString(meykaPath);
+                output.writeString(meykaUrlPrefix);
                 break;
             }
         }
@@ -297,6 +314,15 @@ public abstract class StandardV2RayBean extends AbstractBean {
                 if (version >= 18) {
                     host = input.readString();
                     path = input.readString();
+                }
+                break;
+            }
+            case "meyka": {
+                if (version >= 20) {
+                    meykaKcpHeaderType = input.readString();
+                    meykaKcpSeed = input.readString();
+                    meykaPath = input.readString();
+                    meykaUrlPrefix = input.readString();
                 }
                 break;
             }

@@ -157,6 +157,11 @@ object Key {
     const val SERVER_REALITY_SPIDER_X = "serverRealitySpiderX"
     const val SERVER_REALITY_FINGERPRINT = "serverRealityFingerprint"
 
+    const val SERVER_MEYKA_KCP_SEED = "serverMeykaKcpSeed"
+    const val SERVER_MEYKA_KCP_HEADER_TYPE = "serverMeykaKcpHeaderType"
+    const val SERVER_MEYKA_PATH = "serverMeykaPath"
+    const val SERVER_MEYKA_URL_PREFIX = "serverMeykaUrlPrefix"
+
     const val SERVER_SECURITY_CATEGORY = "serverSecurityCategory"
     const val SERVER_WS_CATEGORY = "serverWsCategory"
     const val SERVER_SS_CATEGORY = "serverSsCategory"
@@ -178,7 +183,6 @@ object Key {
     const val SERVER_VMESS_EXPERIMENTAL_AUTHENTICATED_LENGTH = "serverVMessExperimentalAuthenticatedLength"
     const val SERVER_VMESS_EXPERIMENTAL_NO_TERMINATION_SIGNAL = "serverVMessExperimentalNoTerminationSignal"
 
-    const val SERVER_MUX_CATEGORY = "serverMuxCategory"
     const val SERVER_MUX = "serverMux"
     const val SERVER_MUX_CONCURRENCY = "serverMuxConcurrency"
     const val SERVER_MUX_PACKET_ENCODING = "serverMuxPacketEncoding"
@@ -258,12 +262,6 @@ object TunImplementation {
     const val SYSTEM = 1
 }
 
-object TrojanProvider {
-    const val V2RAY = 0
-    const val TROJAN = 1
-    const val TROJAN_GO = 2
-}
-
 object Hysteria2Provider {
     const val HYSTERIA2_PLUGIN = 0
     const val V2RAY = 1
@@ -284,12 +282,6 @@ object IPv6Mode {
     const val ENABLE = 1
     const val PREFER = 2
     const val ONLY = 3
-}
-
-object PacketStrategy {
-    const val DIRECT = 0
-    const val DROP = 1
-    const val REPLY = 2
 }
 
 object GroupType {

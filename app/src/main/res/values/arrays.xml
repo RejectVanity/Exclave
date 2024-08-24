@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string-array name="bypass_private_route">
         <item>1.0.0.0/8</item>
         <item>2.0.0.0/7</item>
@@ -405,6 +405,7 @@
         <item>HTTPUpgrade</item>
         <item>SplitHTTP</item>
         <item>Hysteria2</item>
+        <item>Meyka</item>
     </string-array>
 
     <string-array name="networks_value">
@@ -418,6 +419,7 @@
         <item>httpupgrade</item>
         <item>splithttp</item>
         <item>hysteria2</item>
+        <item>meyka</item>
     </string-array>
 
     <string-array name="trojan_go_networks_entry">

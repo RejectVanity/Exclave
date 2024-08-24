@@ -267,6 +267,11 @@ object DataStore : OnPreferenceDataStoreChangeListener {
     var serverRealitySpiderX by profileCacheStore.string(Key.SERVER_REALITY_SPIDER_X)
     var serverRealityFingerprint by profileCacheStore.string(Key.SERVER_REALITY_FINGERPRINT)
 
+    var serverMeykaKcpSeed by profileCacheStore.string(Key.SERVER_MEYKA_KCP_SEED)
+    var serverMeykaKcpHeaderType by profileCacheStore.string(Key.SERVER_MEYKA_KCP_HEADER_TYPE)
+    var serverMeykaPath by profileCacheStore.string(Key.SERVER_MEYKA_PATH)
+    var serverMeykaUrlPrefix by profileCacheStore.string(Key.SERVER_MEYKA_URL_PREFIX)
+
     var serverPorts by profileCacheStore.string(Key.SERVER_PORTS)
     var serverHopInterval by profileCacheStore.stringToInt(Key.SERVER_HOP_INTERVAL)
 

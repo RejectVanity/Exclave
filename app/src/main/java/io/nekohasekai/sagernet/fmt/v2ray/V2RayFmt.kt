@@ -489,6 +489,7 @@ fun StandardV2RayBean.toUri(): String {
                 builder.addQueryParameter("url", meekUrl)
             }
         }
+        else -> error("unsupported type $type")
     }
 
     if (this is TrojanBean && security.isNotBlank() && security == "none") {
